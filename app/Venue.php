@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venue extends Model
 {
-    protected $fillable = ['name', 'address', 'capacity'];
+    protected $fillable = ['name', 'address', 'capacity', 'parking'];
 }
