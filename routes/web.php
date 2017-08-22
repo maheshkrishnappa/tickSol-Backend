@@ -15,6 +15,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('api/v1/book', 'BookController@index');
+Route::get('/venue', function () {
+    return view('venue');
+});
 
-//$app->get('api/v1/book','App\Http\Controllers\BookController@index');
+
+Route::get('/api/v1/venue', 'VenueController@getVenues');
+Route::get('/api/v1/venue/{id}', 'VenueController@getVenueFromId');
+
+Route::post('/venue', 'VenueController@venuePost');
+
+/*
+Route::get('/api/v1/venues', 'VenueController@index');
+Route::get('/api/v1/venues/{id}', 'VenueController@show');
+Route::post('/api/v1/venues', 'VenueController@store');
+Route::put('/api/v1/venues/{id}', 'VenueController@update');
+Route::destroy('/api/v1/venue/{id}', 'VenueController@delete');*/
