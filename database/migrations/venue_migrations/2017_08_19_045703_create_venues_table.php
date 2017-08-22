@@ -18,6 +18,7 @@ class CreateVenuesTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->integer('capacity');
+            $table->boolean('parking');
             //$table->timestamps();
         });
     }
