@@ -18,6 +18,24 @@ Route::put('/api/venues/view/{id}', 'VenueController@update');
 Route::delete('/api/venues/view/{id}', 'VenueController@delete');
 Route::get('/api/venues/view/{id}', 'VenueController@retrieve');
 
+
+Route::get('/venue', function () {
+    return view('venue');
+});
+
+
+//Route::get('/api/v1/venue', 'VenueController@getVenues');
+//Route::get('/api/v1/venue/{id}', 'VenueController@getVenueFromId');
+
+//Route::post('/venue', 'VenueController@venuePost');
+
+
+Route::get('/api/v1/venues', 'VenueController@index');
+Route::get('/api/v1/venues/{id}', 'VenueController@show');
+Route::post('/api/v1/venues', 'VenueController@store');
+Route::put('/api/v1/venues/{id}', 'VenueController@update');
+Route::destroy('/api/v1/venue/{id}', 'VenueController@delete');
+
 Route::get('/api/events', 'EventController@index');
 Route::post('/api/events', 'EventController@store');
 Route::put('/api/events/{id}', 'EventController@update');
@@ -52,3 +70,4 @@ Route::post('/api/login', 'LoginController@login');
 
 Route::get('/api/dashboard', 'DashboardController@index');
 Route::get('/api/dashboard/events', 'DashboardController@test');
+

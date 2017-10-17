@@ -27,10 +27,12 @@ class VenueController extends Controller
         return response()->json($result);
     }
 
+
     public function venuePost(Request $data)
     {
         dd("Venue Name: ".$data['venuename'].", Address: ".$data['venueaddress'].", Capacity: ".$data['capacity']);
     }
+
 
     public function store(Request $data)
     {
