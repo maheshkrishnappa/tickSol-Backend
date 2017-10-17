@@ -17,6 +17,7 @@ Route::post('/api/venues/view', 'VenueController@store');
 Route::put('/api/venues/view/{id}', 'VenueController@update');
 Route::delete('/api/venues/view/{id}', 'VenueController@delete');
 Route::get('/api/venues/view/{id}', 'VenueController@retrieve');
+//Route::get('/api/venues/view/{id}', 'VenueController@retrieve');
 
 Route::get('/api/events', 'EventController@index');
 Route::post('/api/events', 'EventController@store');
