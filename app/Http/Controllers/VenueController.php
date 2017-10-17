@@ -7,66 +7,62 @@ use App\Venue;
 
 class VenueController extends Controller
 {
+    protected $venue;
+    protected $result;
+
+    public function __construct()
+    {
+        $this->venue = new Venue();
+    }
 
     public function index()
     {
-        $venues = Venue::all(array('id', 'name', 'address', 'capacity'));
+        $this->result = $this->venue->get();
 
-        foreach ($venues as $venue) {
-            $result[] = array('name' => $venue->name, 'address' => $venue->address, 'capacity' => $venue->capacity);
-        }
-
-        return response()->json($venues);
+        return response()->json([
+            'status' => 200,
+            'venues' => $this->result]);
     }
 
-    public function show($id)
+    public function store(Request $request)
     {
-        $venue = new Venue();
-        $result = $venue->findOrFail($id, array('id', 'name', 'address', 'capacity'));
+        $venue = $this->venue->create($request->all());
+        $venue->label = $request['name'];
+        $venue->save();
 
-        return response()->json($result);
+        return response()->json([
+            'status' => 201
+        ]);
     }
 
-
-    public function venuePost(Request $data)
+    public function update(Request $request, $id)
     {
-        dd("Venue Name: ".$data['venuename'].", Address: ".$data['venueaddress'].", Capacity: ".$data['capacity']);
+        $venueEntry = $this->venue->findOrFail($id);
+        $venueEntry->update($request->all());
+
+        $venueEntry->label = $request['name'];
+        $venueEntry->save();
+
+        return response()->json([
+            'status' => 201
+        ]);
     }
 
-
-    public function store(Request $data)
+    public function delete(Request $request, $id)
     {
-        $venue = new Venue();
-        $newVenue = $venue->create($data->all());
-        //$venue->name = $data->name;
-        //$venue->address = $data->address;
-        //$venue->capacity = $data->capacity;
-        //$venue->save();
-
-        return 201;
+        $venueEntry = $this->venue->findOrFail($id);
+        $venueEntry->delete();
+        return response()->json([
+            'status' => 204
+        ]);
     }
 
-    public function update(Request $data, $id)
+    public function retrieve(Request $request, $id)
     {
-        $venueModel = new Venue();
-        $venue = $venueModel->find($id);
-        if($venue == null)
-        {
-            return 404;
-        }
-
-        else{
-            $venue->update($data->all());
-            return $venue;
-        }
-    }
-
-    public function delete($id)
-    {
-        $venueModel = new Venue();
-        $venue = $venueModel->findOrFail($id);
-        $venue->delete();
-
-        return 204;
+        $this->result = $this->venue->findOrFail($id);
+        return response()->json([
+            'status' => 200,
+            'venue' => $this->result
+        ]);
     }
 }
