@@ -15,4 +15,9 @@ class Booking extends Model
     {
         return $this->belongsToMany('App\Ticket');
     }
+
+    public function tickets1()
+    {
+        return $this->belongsToMany('App\Ticket');
+    }
 }
