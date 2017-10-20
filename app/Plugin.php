@@ -14,4 +14,9 @@ class Plugin extends Model
     {
         return $this->belongsToMany('App\UsersTicksol');
     }
+
+    public function users2()
+    {
+        return $this->belongsToMany('App\UsersTicksol');
+    }
 }
