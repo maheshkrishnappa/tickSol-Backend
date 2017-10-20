@@ -38,4 +38,10 @@ class Venue extends Model
         return $this->belongsToMany('App\Event')
                ->withPivot(['conduct_date', 'start_time', 'end_time']);;
     }
+
+    public function events2()
+    {
+        return $this->belongsToMany('App\Event')
+               ->withPivot(['conduct_date', 'start_time', 'end_time']);;
+    }
 }
